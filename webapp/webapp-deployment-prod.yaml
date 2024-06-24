@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment-prod
+  labels:
+    app: webapp
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: gcr.io/al-gke/webapp:v3
+        ports:
+        - containerPort: 5000

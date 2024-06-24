@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment-scaling
+  labels:
+    app: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: gcr.io/lab-gke-314220/webapp:v3
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            cpu: 200m
